@@ -20,3 +20,14 @@ after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
   - docker images
   - docker push ranaini/alma-server:latest
+
+deploy:
+  provider: releases
+  api_key:
+    secure: b/2OzXNUCDCmNoCe+8yhu5ll7j2g7bgWaInjiJv8svyiLDO1aIHeTT8C5P6j65RIqQ53DEPBCWAqfN4Iou11w+OquVdGjDsW1PJe/p7xdaw48cQfxf4pSbN8ZGRvcZeJ+XVEhIpn0SR0HjJcGT8jXa6gSHWaM6V1kFyJsfZsN9seJiP0FYVKwG1FQJ/DUtrZLdNq0eO7b93vPbV7B7RwlkyOpSLD4m7lQBmBJOKBIljN5sxkN24or2uA3plsuKIS/Ti9bJs2eyw9wsgkqPaK4XzfrQMaBxCskr7w/r2ankxMANP/pFNSagdFq/eUYwI8dwhw+H5B1iznUAELhvpXWlGbevff+lNkbtI/Zd6KCTv0IR9esGOgyysg1ZnoAmLDw/E5deadbB8HANy8v9zugeGO/M1Ry6oqGae7FxiNLLvsIjk1ryX9ATMc3ZRsrNhIHp6Yx1NbycXKT99ZjWou4yLq34HQlw07RMLAWKBOu+jlKV2pso+oCCB4v0qY4F12zcgHTW8VwuN0nmhXi8bBhEuftRDTZ+4TJReXYD7mdYW8tjTSojhXD9ZrpBiCfus47RMcn9qxqJzMrwFodHOPYgZEH6NA8KitOMIEbgvUxOCWeZNi/vhfufAL9w+sTY8+rZmzs01oUYZfbkzTRqkzTUHwxy5jMCdJXo19jC5LBfs=
+  file: alma-server/target/alma-server-1.0.0-SNAPSHOT.jar
+  skip_cleanup: true
+  on:
+    repo: ranaini/alma-m2-2016
+    tags: true
+  overwrite: true
